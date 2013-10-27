@@ -17,7 +17,8 @@ Inneholder kode som ble laget på Websteps fagdag 2013-10-26.
 
 Dersom du ønsker å leke inneholder følgende liste noen tips til utvidelser
 
-* Splitt `FoodController` i to ved å introdusere en ny controller, `FoodListController` som tar for seg ansvaret til lista på høyre side. Bruk `FoodService` i begge controllerne.
+* Splitt `FoodController` i to ved å introdusere en ny controller, `FoodListController` som tar for seg ansvaret til lista på høyre side. Bruk `FoodService` i begge controllerne slik at datakilden deles.
 * Mulighet for å hoppe tilbake i lista: Dette kan gjøres ved å legge til en knapp, bruke `ng-click` og oppdatere `activeRecipeIndex`.
 * Mulighet for å legge til en kommentar: Bruk for eksempel `<textarea>` sammen med `ng-model="recipe.comment"`.
 * Mulighet for å slette elementer i lista til høyre: Legg til en ny knapp per `<li>`-element som fjerner elementet fra `recipes`.
+* `myApp.js` begynner å bli stor. Lag en ny fil per controller og service. Bruk `angular.module('my.app')` for å _hente opp_ den allerede opprettede modulen `my.app` slik at du slipper å eksponere noe på `window`.
