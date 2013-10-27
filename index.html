@@ -1,0 +1,75 @@
+<!doctype html>
+<html>
+
+<head>
+  <meta charset="utf8" />
+  <link rel="stylesheet" type="text/css" href="lib/bootstrap.min.css">
+  <link href='http://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+
+  <script type="text/javascript" src="lib/angular.min.js"></script>
+
+  <script type="text/javascript" src="src/myApp.js"></script>
+
+  <style type="text/css">
+    body,h1 {
+      font-family: Nunito sans-serif;
+    }
+
+    .list-unstyled li {
+      font-size: 3rem;
+    }
+  </style>
+</head>
+
+<body>
+  <div style="padding-top: 50px;" class="container">
+    <div ng-app="my.app">
+    <div ng-controller="FoodController">
+      <div class="row">
+        <div class="col-md-8">
+        <div class="progress">
+          <div class="progress-bar" ng-style="{width: 100 * (activeRecipeIndex / recipes.length) + '%' }"></div>
+        </div>
+         <div class="well">
+         <h1>
+         {{recipes[activeRecipeIndex].name}}
+         </h1>
+         </div> 
+
+         <div class="row">
+           <div class="col-md-6">
+             <button class="btn btn-success btn-block" ng-click="good()">Denne var god</button>
+           </div>
+           <div class="col-md-6">
+             <button class="btn btn-danger btn-block" ng-click="notGood()">Denne var ikke god</button>
+           </div>
+         </div>
+
+         <div class="row">
+           <div class="col-md-7">
+             <div class="panel">
+              <div class="panel-body">
+                <div ng-bind-html-unsafe="recipes[activeRecipeIndex].description">  
+                </div>
+              </div>
+             </div>
+           </div>
+           <div class="col-md-5">
+             <img ng-src="{{recipes[activeRecipeIndex].image}}" style="max-width: 300px" />
+           </div>
+         </div>
+       </div>
+       <div class="col-md-4">
+       <input class="form-control" ng-model="search"></input>
+       <ul class="list-unstyled">
+         <li ng-repeat="recipe in recipes | filter:search">
+           <span class="label label-default" ng-class="{true: 'label-success', false: 'label-danger'}[recipe.keep]">{{recipe.name}}</span>
+         </li>
+       </ul>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
